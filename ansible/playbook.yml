@@ -1,0 +1,96 @@
+---
+- name: Set up Kubernetes Master Node
+  hosts: master  # Corrected to match the inventory group name
+  become: true
+  tasks:
+    - name: Install Kubernetes dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+        update_cache: yes
+
+    - name: Add Kubernetes GPG key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+    - name: Add Kubernetes repository
+      apt_repository:
+        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+
+    - name: Install Kubernetes components (kubelet, kubeadm, kubectl)
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: present
+        update_cache: yes
+
+    - name: Mark Kubernetes packages to hold
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: held
+
+    - name: Enable and start kubelet
+      service:
+        name: kubelet
+        state: started
+        enabled: yes
+
+- name: Set up Kubernetes Worker Node
+  hosts: worker  # Corrected to match the inventory group name
+  become: true
+  tasks:
+    - name: Install Kubernetes dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+        update_cache: yes
+
+    - name: Add Kubernetes GPG key
+      apt_key:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        state: present
+
+    - name: Add Kubernetes repository
+      apt_repository:
+        repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+
+    - name: Install Kubernetes components (kubelet, kubeadm, kubectl)
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: present
+        update_cache: yes
+
+    - name: Mark Kubernetes packages to hold
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+          - kubectl
+        state: held
+
+    - name: Enable and start kubelet
+      service:
+        name: kubelet
+        state: started
+        enabled: yes
