@@ -1,0 +1,10 @@
+- name: Install K3s on all nodes
+  hosts: all
+  become: yes
+  tasks:
+    - name: Disable swap
+      command: swapoff -a
+
+    - name: Install K3s
+      shell: |
+        curl -sfL https://get.k3s.io | sh -
