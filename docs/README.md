@@ -2,7 +2,7 @@
 
 This project simulates a secure, DoD-compliant Kubernetes cluster using lightweight tools and automation.
 
-## 🔧 Tools Used
+##  Tools Used
 
 - **Multipass** – lightweight VMs for simulating cluster nodes
 - **K3s** – lightweight Kubernetes distribution
@@ -10,18 +10,18 @@ This project simulates a secure, DoD-compliant Kubernetes cluster using lightwei
 - **Ansible** – config management and compliance automation
 - **kube-bench** – CIS benchmark checks for Kubernetes
 
-## 🔐 Security Focus
+## Security Focus
 
 The cluster setup is guided by **DoD STIG** and **CIS Kubernetes Benchmarks**, using `kube-bench` for auditing.  
 Challenges included fixing broken YAML files and handling missing benchmark directories.
 
-## ✅ Current Status
+##  Current Status
 
 - [x] Local cluster provisioning (Multipass + K3s)
 - [x] kube-bench integrated for compliance checks
 - [x] Initial repo pushed to GitHub
 
-## 🚀 Next Steps
+##  Next Steps
 
 - Finalize kube-bench validation
 - Expand Ansible for full STIG automation
